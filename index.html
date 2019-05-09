@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF8">
+    </head>
+    <body>
+        <script>
+            const list = ["ROCK", "PAPER", "SCISSORS"];
+
+            function computerPlay() {
+                return list[Math.floor(Math.random()*3)]
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                playerSelection = playerSelection.toUpperCase()
+                if (computerSelection === playerSelection) {
+                    return 0;
+                } else if (
+                    computerSelection === 'ROCK' && playerSelection ==='PAPER' ||
+                    computerSelection === 'PAPER' && playerSelection === 'SCISSORS' ||
+                    computerSelection === 'SCISSORS' && playerSelection === 'ROCK') {
+                        return 1;  
+                } else if (
+                    computerSelection === 'SCISSORS' && playerSelection ==='PAPER' ||
+                    computerSelection === 'ROCK' && playerSelection === 'SCISSORS' ||
+                    computerSelection === 'PAPER' && playerSelection === 'ROCK') {
+                        return -1; 
+                }     
+            }
+
+            function game() {
+                let playerScore = 0
+                let playerSelection
+                let computerSelection
+                for (let i = 1; i<= 5; i++) {
+                    computerSelection = computerPlay();
+                    playerSelection = prompt('Enter Selection: ')
+                    result = playRound(playerSelection,computerSelection);
+                    playerScore += result;
+                    if (result === 0) console.log("Tie! You both chose " + playerSelection);
+                    if (result === 1) console.log("You Win! " + playerSelection + " beats " + computerSelection);
+                    if (result === -1) console.log("You Lose! " + computerSelection + " beats " + playerSelection);
+                }
+                if (playerScore > 0) console.log("Player wins");
+                else if (playerScore == 0) console.log("Tie Game");
+                else console.log("Computer wins");
+            }
+        </script>
+    </body>
+</html>
